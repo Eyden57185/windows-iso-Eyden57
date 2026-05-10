@@ -134,16 +134,16 @@
     </span>
     <a href="https://www.virtualbox.org/" class="btn-dl" target="_blank" style="background-color: #28a745;">Site Officiel</a>
 <h2 style="margin-top:40px; color: #333; border-bottom: 2px solid #0078d7; padding-bottom: 10px;">
-    <audio id="bgMusic" src="WinMusiqueISO.mp4" autoplay loop></audio>
+    <audio id="bgMusic" src="WinMusique.mp4" autoplay></audio>
 
 <script>
   var audio = document.getElementById("bgMusic");
   
-  // On règle le volume à 20% pour que ce soit discret (pas trop fort)
-  audio.volume = 0.2;
+  // On règle le volume à 0.1 (10%) pour que ce soit très léger
+  audio.volume = 0.1;
 
-  // Les navigateurs bloquent souvent la musique automatique. 
-  // Cette ligne lancera la musique dès que l'utilisateur cliquera n'importe où sur le site.
+  // Comme les navigateurs bloquent le son automatique, 
+  // la musique se lancera dès que l'utilisateur cliquera sur le site.
   document.addEventListener('click', function() {
       audio.play();
   }, { once: true });
