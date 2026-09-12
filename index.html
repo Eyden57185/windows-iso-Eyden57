@@ -6,6 +6,15 @@
     <title>Windows ISO Collection - 95 à 11</title>
     <link rel="icon" type="image/png" href="favicon-windows.png">
     <style>
+        :root {
+            --bg-color: #0b0b0e;
+            --card-bg: #16161a;
+            --accent-color: #0078d4;
+            --text-main: #f5f5f7;
+            --text-secondary: #86868b;
+            --border-color: #2c2c2e;
+        }
+
         @keyframes fondWindows {
             0% { background-position: 0% 50%; background-size: 110% 110%; }
             50% { background-position: 100% 50%; background-size: 118% 118%; }
@@ -13,212 +22,373 @@
         }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; 
             background-image: url('fond-decran-macOS-Sequoia-15-clair.png');
             background-attachment: fixed;
             background-repeat: no-repeat;
             animation: fondWindows 22s ease infinite;
             margin: 0; 
             padding: 20px; 
+            color: #333;
         }
-        .container { max-width: 900px; margin: auto; }
-        header { background: #0078d4; color: white; padding: 20px; text-align: center; border-radius: 8px; }
-        .category { background: white; padding: 20px; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { border-bottom: 2px solid #0078d4; color: #0078d4; }
-        .iso-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .btn-dl { background: #28a745; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9em; }
+
+        .container { max-width: 1000px; margin: auto; }
         
-        /* Style du Tableau des Émulateurs Windows */
-        .table-emulateurs { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .table-emulateurs th, .table-emulateurs td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        .table-emulateurs th { background-color: #0078d4; color: white; border-radius: 4px 4px 0 0; }
-        .table-emulateurs tr:hover { background-color: #f9f9f9; }
-        .badge-emu { background-color: #0078d4; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
-        
-        /* Style commun pour les boutons de navigation haut de page */
+        header { 
+            background: rgba(0, 120, 212, 0.9); 
+            backdrop-filter: blur(10px);
+            color: white; 
+            padding: 25px; 
+            text-align: center; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        header h1 { margin: 0 0 10px 0; font-size: 2rem; }
+        header p { margin: 0 0 20px 0; opacity: 0.9; }
+
+        /* Barre de recherche */
+        .search-bar { text-align: center; margin-top: 15px; }
+        .search-bar input {
+            width: 80%;
+            max-width: 450px;
+            padding: 10px 18px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .category { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-top: 25px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+
+        .era-title {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Grille des cartes ISO */
+        .iso-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e1e1e1;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 120, 212, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .card img {
+            max-height: 30px;
+            max-width: 35px;
+            object-fit: contain;
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-info h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .card-info span {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        /* Boutons de navigation top */
         .btn-nav-top {
             color: #fff;
             text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
             transition: background 0.3s, transform 0.2s;
         }
+
+        /* Style du Tableau des Émulateurs */
+        .table-emulateurs { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .table-emulateurs th, .table-emulateurs td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .table-emulateurs th { background-color: var(--accent-color); color: white; border-radius: 4px 4px 0 0; }
+        .table-emulateurs tr:hover { background-color: #f9f9f9; }
+        .badge-emu { background-color: var(--accent-color); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
+
+        /* Style Pop-up (Modale) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 14px;
+            padding: 25px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            color: #111;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: #f0f0f0;
+            border: none;
+            color: #555;
+            font-size: 1.2rem;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .close-btn:hover { background: #e0e0e0; color: #000; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Windows ISO Museum</h1>
+        <h1>🖥️ Windows Museum</h1>
         <p>Toutes les versions de Windows au même endroit</p>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher une version (ex: Windows 11, XP, 98)...">
+        </div>
     </header>
 
     <!-- SECTION MODERNE -->
     <div class="category">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0078d4; padding-bottom: 10px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0078d4; padding-bottom: 10px; margin-bottom: 15px;">
             <h2 style="color: #0078d4; margin: 0; border-bottom: none;">Windows Modernes</h2>
             
-            <!-- Conteneur des boutons de navigation -->
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <!-- Bouton macOS -->
-                <a href="https://eyden57185.github.io/macos-iso/" class="btn-nav-top" style="background-color: #000;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='#000'">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple" style="height: 16px; width: 16px; margin-right: 8px;">
-                    macOS ISO
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="https://eyden57185.github.io/macos-iso/" class="btn-nav-top" style="background-color: #000;">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple" style="height: 14px; width: 14px; margin-right: 6px;">
+                    macOS
                 </a>
-                
-                <!-- Bouton iPhone -->
-                <a href="https://eyden57185.github.io/tous-les-iphones/" class="btn-nav-top" style="background-color: #0071e3;" onmouseover="this.style.backgroundColor='#0077ed'" onmouseout="this.style.backgroundColor='#0071e3'">
+                <a href="https://eyden57185.github.io/tous-les-iphones/" class="btn-nav-top" style="background-color: #0071e3;">
                     📱 Encyclopédie iPhone
                 </a>
             </div>
         </div>
 
-        <div class="iso-item">
-            <span>
-                <img src="./win11.png" width="20" style="margin-right:10px; vertical-align:middle;">
-                Windows 11 x64
-            </span>
-            <a href="https://mega.nz/file/EI1FCDKb#JVUNi-sF20dU6BXDaVTc7_AAT11zHupORfMstY0nuGU" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="win10.png" width="25" style="margin-right:10px; vertical-align:middle;">
-                Windows 10 x64
-            </span>
-            <a href="https://mega.nz/file/gctWRahD#2wfhbJPSk3QMfY-TEIeg8ERokY0XGS5BjKuvPSwtBjU" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win10.png" alt="Win10" style="height: 20px; width: 20px; margin-right: 15px;">
-                <span style="color: #333;">Windows 10 x32</span>
+        <div class="iso-grid">
+            <div class="card" data-details="Dernier système d'exploitation de Microsoft avec une interface modernisée, un nouveau menu Démarrer et la gestion des applications Android.">
+                <img src="./win11.png" alt="Win11">
+                <div class="card-info">
+                    <h3>Windows 11 x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
             </div>
-            <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win8.1.png" style="height: 20px; margin-right: 15px;">
-                <span style="color: #333;">Windows 8.1 x64</span>
+
+            <div class="card" data-details="Version très stable et populaire, intégrant DirectX 12, le menu Démarrer classique combiné aux tuiles interactives.">
+                <img src="win10.png" alt="Win10">
+                <div class="card-info">
+                    <h3>Windows 10 x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
             </div>
-            <a href="https://mega.nz/file/NEMSWBrY#YUJ5rwKW6qBr7SC3esEs1PMR41JDmsXFOavkhuyGKi8" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win8.1.png" style="height: 20px; width: 20px; margin-right: 15px;">
-                <span style="color: #333;"><b>Windows 8.1 x32</b></span>
+
+            <div class="card" data-details="Version 32 bits de Windows 10 idéale pour les machines plus anciennes équipées de moins de 4 Go de RAM.">
+                <img src="win10.png" alt="Win10">
+                <div class="card-info">
+                    <h3>Windows 10 x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
             </div>
-            <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win8.png" style="height: 20px; margin-right: 15px;">
-                <span style="color: #333;">Windows 8 x64</span>
+
+            <div class="card" data-details="Mise à jour majeure de Windows 8 réintroduisant le bouton Démarrer et améliorant la navigation du bureau.">
+                <img src="win8.1.png" alt="Win8.1">
+                <div class="card-info">
+                    <h3>Windows 8.1 x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
             </div>
-            <a href="https://mega.nz/file/JJUVSLLL#5VPkbRKf8Dk5wfYVtYHh87RLS9oQFw2Ib1r5MxYhq3c" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win8.png" style="height: 20px; width: 20px; margin-right: 15px;">
-                <span style="color: #333;"><b>Windows 8 x32</b></span>
+
+            <div class="card" data-details="Version 32 bits de Windows 8.1 optimisée pour les processeurs plus anciens.">
+                <img src="win8.1.png" alt="Win8.1">
+                <div class="card-info">
+                    <h3>Windows 8.1 x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
             </div>
-            <a href="https://archive.org/download/win8-x32/fr_windows_8_x86_dvd_915420.iso" class="btn-dl" target="_blank">Télécharger</a>
+
+            <div class="card" data-details="Inauguration de l'interface Metro/Modern UI conçue pour les écrans tactiles et démarrage ultra-rapide.">
+                <img src="win8.png" alt="Win8">
+                <div class="card-info">
+                    <h3>Windows 8 x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Version 32 bits de Windows 8 avec l'interface à tuiles dynamiques.">
+                <img src="win8.png" alt="Win8">
+                <div class="card-info">
+                    <h3>Windows 8 x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- SECTION LEGACY -->
     <div class="category">
-        <h2>Windows Classiques</h2>
-        <div class="iso-item">
-            <span>
-                <img src="win7.png" width="25" style="margin-right:10px; vertical-align:middle;">
-                Windows 7 x64
-            </span>
-            <a href="https://mega.nz/file/YBtQFLgA#NT7nwFsZ2k0P5lTq6kAj9mKkST_gbuKPzDSj8OnZw3g" class="btn-dl">Télécharger</a>
-        </div>  
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="win7.png" alt="Win7" style="height: 25px; margin-right: 15px;">
-                <span style="color: #333;">Windows 7 x32</span>
+        <h2 class="era-title">Windows Classiques</h2>
+        <div class="iso-grid">
+            <div class="card" data-details="L'un des systèmes Windows les plus appréciés, célèbre pour son thème Aero, sa grande stabilité et sa rapidité.">
+                <img src="win7.png" alt="Win7">
+                <div class="card-info">
+                    <h3>Windows 7 x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
             </div>
-            <a href="https://mega.nz/file/gU0HxJrC#U-K2-w9YpusC_UTCa6BmFBQMSeWh30YhpmgPZK2afk8" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="winVista.png" width="25" style="margin-right:10px; vertical-align:middle;">
-                Windows Vista x64
-            </span>
-            <a href="https://mega.nz/file/ZVFwlZpL#ycFHnvyGsqiorXNzSlr23e-Jhbpw-OOHY4TEqnZDK0g" class="btn-dl">Télécharger</a>
-        </div> 
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="winVista.png" alt="Vista" style="height: 20px; width: 20px; margin-right: 15px;">
-                <span style="color: #333;"><b>Windows Vista x32</b></span>
+
+            <div class="card" data-details="Version 32 bits de Windows 7, très fluide sur les configurations modestes.">
+                <img src="win7.png" alt="Win7">
+                <div class="card-info">
+                    <h3>Windows 7 x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
             </div>
-            <a href="https://archive.org/details/Vista_SP2_LP_32bit" class="btn-dl" target="_blank">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="winXP.png" width="33" style="margin-right:10px; vertical-align:middle;">
-                Windows XP x64
-            </span>
-            <a href="https://mega.nz/file/xdUBwLYA#sGKzSvoIf8QBrfaJYaI6L2eFx9zmEeRRKmYWWCKR7RA" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <div style="display: flex; align-items: center;">
-                <img src="winXP.png" alt="XP" style="height: 20px; width: 20px; margin-right: 15px;">
-                <span style="color: #333;"><b>Windows XP x32</b></span>
+
+            <div class="card" data-details="Inauguration de l'interface visuelle Aero Glass, de la recherche Windows Search et d'un nouveau modèle de sécurité (UAC).">
+                <img src="winVista.png" alt="Vista">
+                <div class="card-info">
+                    <h3>Windows Vista x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
             </div>
-            <a href="https://archive.org/details/WinXPProSP3FRRecenSed" class="btn-dl" target="_blank">Télécharger</a>
+
+            <div class="card" data-details="Version 32 bits de Windows Vista intégrant le Service Pack 2.">
+                <img src="winVista.png" alt="Vista">
+                <div class="card-info">
+                    <h3>Windows Vista x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Révolutionnaire lors de sa sortie avec son thème Luna bleu et vert, fusionnant les gammes grand public et professionnelles (NT).">
+                <img src="winXP.png" alt="XP">
+                <div class="card-info">
+                    <h3>Windows XP x64</h3>
+                    <span>Architecture 64 bits</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Version 32 bits Service Pack 3 légendaire de Windows XP, compatible avec la majorité des anciens jeux PC.">
+                <img src="winXP.png" alt="XP">
+                <div class="card-info">
+                    <h3>Windows XP x32</h3>
+                    <span>Architecture 32 bits</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- SECTION RETRO -->
     <div class="category">
-        <h2>Windows Rétro</h2>
-        <div class="iso-item">
-            <span>
-                <img src="winME.png" width="100" style="margin-right:10px; vertical-align:middle;">
-                Windows ME (Millennium) x32
-            </span>
-            <a href="https://mega.nz/file/RYNDTK7S#8sedoCNWgA2Zq9roPJzHhrsoKdYPlHpLw1oXz7IKSIg" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="win2000.png" width="100" style="margin-right:10px; vertical-align:middle;">
-                Windows 2000 x32
-            </span>
-            <a href="https://mega.nz/file/sBlRgawT#x_nnctbOByYFYaXH8aKoD92gIFanlQ70lwy05MIqApQ" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="win98.png" width="60" style="margin-right:10px; vertical-align:middle;">
-                Windows 98 SE x32
-            </span>
-            <a href="https://mega.nz/file/9YNySQhZ#IEvPcy5ytZtGDDG2989Bpf6aSAhhUoAxwnU26tM8jhg" class="btn-dl">Télécharger</a>
-        </div>
-        
-        <div class="iso-item">
-            <span>
-                <img src="win95.png" width="60" style="margin-right:10px; vertical-align:middle;">
-                Windows 95 x32
-            </span>
-            <a href="https://mega.nz/folder/NUVmTJKY#NF7hM66sKqBvsbIQ1acQoA" class="btn-dl">Télécharger</a>
+        <h2 class="era-title">Windows Rétro</h2>
+        <div class="iso-grid">
+            <div class="card" data-details="Dernier système de la branche MS-DOS orienté grand public, introduisant la restauration du système et Windows Media Player.">
+                <img src="winME.png" alt="WinME">
+                <div class="card-info">
+                    <h3>Windows ME x32</h3>
+                    <span>Millennium Edition</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Système professionnel basé sur le noyau NT 5.0, reconnu pour sa grande fiabilité et ayant servi de base à Windows XP.">
+                <img src="win2000.png" alt="Win2000">
+                <div class="card-info">
+                    <h3>Windows 2000 x32</h3>
+                    <span>Noyau NT 5.0</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Seconde Édition mythique de Windows 98 apportant le support USB amélioré et le partage de connexion Internet.">
+                <img src="win98.png" alt="Win98">
+                <div class="card-info">
+                    <h3>Windows 98 SE x32</h3>
+                    <span>Second Edition</span>
+                </div>
+            </div>
+
+            <div class="card" data-details="Inauguration du menu Démarrer, de la barre des tâches et du bureau moderne tel que nous le connaissons aujourd'hui.">
+                <img src="win95.png" alt="Win95">
+                <div class="card-info">
+                    <h3>Windows 95 x32</h3>
+                    <span>Version originale 1995</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -227,19 +397,21 @@
         <h2 style="margin-top:0; color: #333333; border-bottom: 2px solid #0078d7; padding-bottom: 10px;">
             🧰 Outil Indispensable
         </h2>
-        <div class="iso-item">
-            <span>
-                <img src="VMware.png" width="30" style="margin-right:10px; vertical-align:middle;">
-                <b>VMware Workstation</b> - Tester Windows en l'installant
-            </span>
-            <a href="https://www.clubic.com/telecharger-fiche121950-vmware-workstation.html" class="btn-dl" target="_blank">Téléchargement Sécurisé</a>
+        <div class="iso-grid">
+            <div class="card" data-details="Logiciel de virtualisation professionnel de référence pour exécuter vos sous-systèmes Windows en toute sécurité.">
+                <img src="VMware.png" alt="VMware">
+                <div class="card-info">
+                    <h3>VMware Workstation</h3>
+                    <span>Machine Virtuelle</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Section : Tableau des Émulateurs Windows -->
     <div class="category">
         <h2>💻 Guide des Émulateurs et Machines Virtuelles</h2>
-        <p style="font-size: 0.9em; color: #666;">Voici les logiciels recommandés pour tester les ISO Windows selon leur génération :</p>
+        <p style="font-size: 0.9em; color: #666;">Voici les logiciels recommandés pour tester les versions de Windows selon leur génération :</p>
         
         <table class="table-emulateurs">
             <thead>
@@ -275,6 +447,63 @@
     </div>
 
 </div>
+
+<!-- Fenêtre Pop-up (Modale) -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="modal-title" id="modalTitle">Nom de la version</div>
+        <div class="modal-body">
+            <p id="modalText">Détails de la version...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Recherche dynamique
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            let title = card.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(filter)) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+
+    // Gestion du Pop-up Modal
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const closeBtn = document.getElementById('closeBtn');
+
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3').textContent;
+            const details = card.getAttribute('data-details') || 'Informations bientôt disponibles.';
+
+            modalTitle.textContent = title;
+            modalText.textContent = details;
+            
+            modalOverlay.style.display = 'flex';
+        });
+    });
+
+    // Fermeture du Pop-up
+    closeBtn.addEventListener('click', () => {
+        modalOverlay.style.display = 'none';
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 </html>
