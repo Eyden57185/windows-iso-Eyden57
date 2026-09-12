@@ -15,63 +15,78 @@
             --border-color: #2c2c2e;
         }
 
-        @keyframes fondWindows {
-            0% { background-position: 0% 50%; background-size: 110% 110%; }
-            50% { background-position: 100% 50%; background-size: 118% 118%; }
-            100% { background-position: 0% 50%; background-size: 110% 110%; }
-        }
-
         body { 
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; 
-            background-image: url('fond-decran-macOS-Sequoia-15-clair.png');
+            background: linear-gradient(135deg, #0b0b0e 0%, #16161a 100%);
             background-attachment: fixed;
-            background-repeat: no-repeat;
-            animation: fondWindows 22s ease infinite;
             margin: 0; 
             padding: 20px; 
-            color: #333;
+            color: #f5f5f7;
         }
 
         .container { max-width: 1000px; margin: auto; }
+
+        /* Titre géant stylisé en lettres */
+        .site-title-letters {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #0078d4, #00bcf2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 20px rgba(0, 120, 212, 0.2);
+        }
         
         header { 
-            background: rgba(0, 120, 212, 0.9); 
+            background: rgba(22, 22, 26, 0.85); 
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white; 
             padding: 25px; 
             text-align: center; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-radius: 16px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         header h1 { margin: 0 0 10px 0; font-size: 2rem; }
-        header p { margin: 0 0 20px 0; opacity: 0.9; }
+        header p { margin: 0 0 20px 0; color: #a1a1a6; }
 
         /* Barre de recherche */
         .search-bar { text-align: center; margin-top: 15px; }
         .search-bar input {
             width: 80%;
             max-width: 450px;
-            padding: 10px 18px;
+            padding: 12px 20px;
             border-radius: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
+            background-color: #1c1c21;
+            color: #fff;
             outline: none;
             font-size: 0.95rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: border-color 0.2s;
+        }
+
+        .search-bar input:focus {
+            border-color: #0078d4;
         }
 
         .category { 
-            background: rgba(255, 255, 255, 0.95); 
+            background: rgba(22, 22, 26, 0.85); 
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 20px; 
-            border-radius: 12px; 
+            border-radius: 16px; 
             margin-top: 25px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3); 
         }
 
         .era-title {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
+            color: #0078d4;
+            border-bottom: 2px solid #0078d4;
             padding-bottom: 8px;
             margin-top: 0;
             margin-bottom: 15px;
@@ -87,9 +102,9 @@
         }
 
         .card {
-            background-color: #ffffff;
-            border: 1px solid #e1e1e1;
-            border-radius: 10px;
+            background-color: #1c1c21;
+            border: 1px solid #2c2c30;
+            border-radius: 12px;
             padding: 15px;
             display: flex;
             align-items: center;
@@ -99,8 +114,8 @@
 
         .card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 120, 212, 0.2);
-            border-color: var(--accent-color);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.3);
+            border-color: #0078d4;
         }
 
         .card-info {
@@ -111,13 +126,13 @@
         .card-info h3 {
             margin: 0;
             font-size: 1rem;
-            color: #222;
+            color: #f5f5f7;
         }
 
         .card-info span {
             font-size: 0.8rem;
-            color: #666;
-            margin-top: 3px;
+            color: #86868b;
+            margin-top: 4px;
         }
 
         /* Boutons de navigation top */
@@ -131,6 +146,7 @@
             display: inline-flex;
             align-items: center;
             transition: background 0.3s, transform 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Style Pop-up (Modale) */
@@ -140,8 +156,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -149,15 +165,17 @@
         }
 
         .modal-content {
-            background-color: #ffffff;
-            border-radius: 14px;
+            background-color: #1c1c21;
+            border: 1px solid #2c2c30;
+            border-radius: 16px;
             padding: 25px;
             width: 90%;
             max-width: 450px;
             text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             position: relative;
             animation: fadeIn 0.2s ease-out;
+            color: #f5f5f7;
         }
 
         @keyframes fadeIn {
@@ -167,16 +185,16 @@
 
         .modal-title {
             font-size: 1.4rem;
-            color: #111;
+            color: #fff;
             margin-bottom: 10px;
             font-weight: bold;
         }
 
         .modal-body {
             font-size: 0.95rem;
-            color: #444;
+            color: #a1a1a6;
             line-height: 1.5;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #2c2c30;
             padding-top: 15px;
             margin-top: 10px;
             text-align: left;
@@ -186,9 +204,9 @@
             position: absolute;
             top: 12px;
             right: 15px;
-            background: #f0f0f0;
+            background: #2c2c30;
             border: none;
-            color: #555;
+            color: #a1a1a6;
             font-size: 1.2rem;
             width: 30px;
             height: 30px;
@@ -196,12 +214,15 @@
             cursor: pointer;
         }
 
-        .close-btn:hover { background: #e0e0e0; color: #000; }
+        .close-btn:hover { background: #3a3a40; color: #fff; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Grand titre textuel avec effet de lettres stylisées -->
+    <div class="site-title-letters">WINDOWS</div>
+
     <header>
         <h1>🖥️ Encyclopédie des Windows</h1>
         <p>Toutes les versions de Windows au même endroit</p>
