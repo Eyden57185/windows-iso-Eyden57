@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows ISO Collection - 95 à 11</title>
+    <title>Encyclopédie des Windows</title>
     <link rel="icon" type="image/png" href="favicon-windows.png">
     <style>
         :root {
@@ -140,13 +140,6 @@
             transition: background 0.3s, transform 0.2s;
         }
 
-        /* Style du Tableau des Émulateurs */
-        .table-emulateurs { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .table-emulateurs th, .table-emulateurs td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        .table-emulateurs th { background-color: var(--accent-color); color: white; border-radius: 4px 4px 0 0; }
-        .table-emulateurs tr:hover { background-color: #f9f9f9; }
-        .badge-emu { background-color: var(--accent-color); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
-
         /* Style Pop-up (Modale) */
         .modal-overlay {
             position: fixed;
@@ -217,7 +210,7 @@
 
 <div class="container">
     <header>
-        <h1>🖥️ Windows Museum</h1>
+        <h1>🖥️Encyclopédie des Windows</h1>
         <p>Toutes les versions de Windows au même endroit</p>
         
         <div class="search-bar">
@@ -233,7 +226,7 @@
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <a href="https://eyden57185.github.io/macos-iso/" class="btn-nav-top" style="background-color: #000;">
                     <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple" style="height: 14px; width: 14px; margin-right: 6px;">
-                    macOS
+                    🍏 Encyclopédie MacOS
                 </a>
                 <a href="https://eyden57185.github.io/tous-les-iphones/" class="btn-nav-top" style="background-color: #0071e3;">
                     📱 Encyclopédie iPhone
@@ -391,62 +384,6 @@
             </div>
         </div>
     </div>
-
-    <!-- SECTION OUTILS -->
-    <div class="category">
-        <h2 style="margin-top:0; color: #333333; border-bottom: 2px solid #0078d7; padding-bottom: 10px;">
-            🧰 Outil Indispensable
-        </h2>
-        <div class="iso-grid">
-            <div class="card" data-details="Logiciel de virtualisation professionnel de référence pour exécuter vos sous-systèmes Windows en toute sécurité.">
-                <img src="VMware.png" alt="VMware">
-                <div class="card-info">
-                    <h3>VMware Workstation</h3>
-                    <span>Machine Virtuelle</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section : Tableau des Émulateurs Windows -->
-    <div class="category">
-        <h2>💻 Guide des Émulateurs et Machines Virtuelles</h2>
-        <p style="font-size: 0.9em; color: #666;">Voici les logiciels recommandés pour tester les versions de Windows selon leur génération :</p>
-        
-        <table class="table-emulateurs">
-            <thead>
-                <tr>
-                    <th>Génération Windows</th>
-                    <th>Versions compatibles</th>
-                    <th>Logiciel recommandé</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Windows Modernes</strong></td>
-                    <td>Windows 11, 10</td>
-                    <td><span class="badge-emu">VirtualBox</span> / <span class="badge-emu">Hyper-V</span> / <span class="badge-emu">VMware</span></td>
-                </tr>
-                <tr>
-                    <td><strong>Windows Classiques</strong></td>
-                    <td>Windows 8.1, 7, Vista, XP</td>
-                    <td><span class="badge-emu">VirtualBox</span> / <span class="badge-emu">VMware Workstation</span></td>
-                </tr>
-                <tr>
-                    <td><strong>Windows Rétro (9x)</strong></td>
-                    <td>Windows Me, 98, 95</td>
-                    <td><span class="badge-emu">PCem</span> / <span class="badge-emu">86Box</span> / <span class="badge-emu">VMware (avec patchs)</span></td>
-                </tr>
-                <tr>
-                    <td><strong>Windows MS-DOS</strong></td>
-                    <td>Windows 3.11, 3.1, 1.0</td>
-                    <td><span class="badge-emu">DOSBox-X</span> / <span class="badge-emu">PCem</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
 
 <!-- Fenêtre Pop-up (Modale) -->
 <div class="modal-overlay" id="modalOverlay">
