@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows ISO Collection - 95 à 11</title>
+    <link rel="icon" type="image/png" href="favicon-windows.png">
     <style>
         @keyframes fondWindows {
             0% { background-position: 0% 50%; background-size: 110% 110%; }
@@ -13,7 +14,6 @@
 
         body { 
             font-family: 'Segoe UI', sans-serif; 
-            /* On utilise ton image Sequoia pour le site Windows */
             background-image: url('fond-decran-macOS-Sequoia-15-clair.png');
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -27,15 +27,27 @@
         h2 { border-bottom: 2px solid #0078d4; color: #0078d4; }
         .iso-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
         .btn-dl { background: #28a745; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9em; }
-         /* Style du Tableau des Émulateurs Windows */
+        
+        /* Style du Tableau des Émulateurs Windows */
         .table-emulateurs { width: 100%; border-collapse: collapse; margin-top: 15px; }
         .table-emulateurs th, .table-emulateurs td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
         .table-emulateurs th { background-color: #0078d4; color: white; border-radius: 4px 4px 0 0; }
         .table-emulateurs tr:hover { background-color: #f9f9f9; }
         .badge-emu { background-color: #0078d4; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
-    
-  <link rel="icon" type="image/png" href="favicon-windows.png">
-</head>  </style>
+        
+        /* Style commun pour les boutons de navigation haut de page */
+        .btn-nav-top {
+            color: #fff;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: background 0.3s, transform 0.2s;
+        }
+    </style>
 </head>
 <body>
 
@@ -48,162 +60,184 @@
     <!-- SECTION MODERNE -->
     <div class="category">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0078d4; padding-bottom: 10px; margin-bottom: 20px;">
-    <h2 style="color: #0078d4; margin: 0;">Windows Modernes</h2>
-    <!-- Bouton de redirection vers le site macOS -->
-    <a href="https://eyden57185.github.io/macos-iso/" style="background-color: #000; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 5px; font-size: 14px; font-weight: bold; display: flex; align-items: center; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='#000'">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple" style="height: 16px; width: 16px; margin-right: 8px;">
-        macOS ISO
-    </a>
-</div>
+            <h2 style="color: #0078d4; margin: 0; border-bottom: none;">Windows Modernes</h2>
+            
+            <!-- Conteneur des boutons de navigation -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <!-- Bouton macOS -->
+                <a href="https://eyden57185.github.io/macos-iso/" class="btn-nav-top" style="background-color: #000;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='#000'">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple" style="height: 16px; width: 16px; margin-right: 8px;">
+                    macOS ISO
+                </a>
+                
+                <!-- Bouton iPhone -->
+                <a href="iphone.html" class="btn-nav-top" style="background-color: #0071e3;" onmouseover="this.style.backgroundColor='#0077ed'" onmouseout="this.style.backgroundColor='#0071e3'">
+                    📱 Encyclopédie iPhone
+                </a>
+            </div>
+        </div>
+
         <div class="iso-item">
-    <span>
-        <img src="./win11.png" width="20" style="margin-right:10px; vertical-align:middle;">
-        Windows 11 x64
-    </span>
-    <a href="https://mega.nz/file/EI1FCDKb#JVUNi-sF20dU6BXDaVTc7_AAT11zHupORfMstY0nuGU" class="btn-dl">Télécharger</a>
-</div>
+            <span>
+                <img src="./win11.png" width="20" style="margin-right:10px; vertical-align:middle;">
+                Windows 11 x64
+            </span>
+            <a href="https://mega.nz/file/EI1FCDKb#JVUNi-sF20dU6BXDaVTc7_AAT11zHupORfMstY0nuGU" class="btn-dl">Télécharger</a>
+        </div>
+        
         <div class="iso-item">
-    <span>
-        <!-- J'ai juste ajouté width="30" ici -->
-        <img src="win10.png" width="25" style="margin-right:10px; vertical-align:middle;">
-        Windows 10 x64
-    </span>
-    <a href="https://mega.nz/file/gctWRahD#2wfhbJPSk3QMfY-TEIeg8ERokY0XGS5BjKuvPSwtBjU" class="btn-dl">Télécharger</a>
-</div>
-       <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="display: flex; align-items: center;">
-        <img src="win10.png" alt="Win10" style="height: 20px; width: 20px; margin-right: 15px;">
-        <span style="color: #333;">Windows 10 x32</span>
-    </div>
-    <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank">Télécharger</a>
-</div>
-        <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="display: flex; align-items: center;">
-        <img src="win8.1.png" style="height: 20px; margin-right: 15px;">
-        <span style="color: #333;">Windows 8.1 x64</span>
-    </div>
-    <a href="https://mega.nz/file/NEMSWBrY#YUJ5rwKW6qBr7SC3esEs1PMR41JDmsXFOavkhuyGKi8" class="btn-dl" target="_blank">Télécharger</a>
-</div>
-       <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center;">
-        <img src="win8.1.png" style="height: 20px; width: 20px; margin-right: 15px;">
-        <span style="color: #333;"><b>Windows 8.1 x32</span>
-    </div>
-    <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Télécharger</a>
-</div>
-        <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="display: flex; align-items: center;">
-        <img src="win8.png" style="height: 20px; margin-right: 15px;">
-        <span style="color: #333;">Windows 8 x64</span>
-    </div>
-    <a href="https://mega.nz/file/JJUVSLLL#5VPkbRKf8Dk5wfYVtYHh87RLS9oQFw2Ib1r5MxYhq3c" class="btn-dl" target="_blank">Télécharger</a>
-</div>
-        <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center;">
-        <img src="win8.png" style="height: 20px; width: 20px; margin-right: 15px;">
-        <span style="color: #333;"><b>Windows 8 x32</span>
-    </div>
-    <a href="https://archive.org/download/win8-x32/fr_windows_8_x86_dvd_915420.iso" class="btn-dl" target="_blank" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Télécharger</a>
-</div>
+            <span>
+                <img src="win10.png" width="25" style="margin-right:10px; vertical-align:middle;">
+                Windows 10 x64
+            </span>
+            <a href="https://mega.nz/file/gctWRahD#2wfhbJPSk3QMfY-TEIeg8ERokY0XGS5BjKuvPSwtBjU" class="btn-dl">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="win10.png" alt="Win10" style="height: 20px; width: 20px; margin-right: 15px;">
+                <span style="color: #333;">Windows 10 x32</span>
+            </div>
+            <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="win8.1.png" style="height: 20px; margin-right: 15px;">
+                <span style="color: #333;">Windows 8.1 x64</span>
+            </div>
+            <a href="https://mega.nz/file/NEMSWBrY#YUJ5rwKW6qBr7SC3esEs1PMR41JDmsXFOavkhuyGKi8" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="win8.1.png" style="height: 20px; width: 20px; margin-right: 15px;">
+                <span style="color: #333;"><b>Windows 8.1 x32</b></span>
+            </div>
+            <a href="https://mega.nz/file/9V0gFBxZ#tdTDFkpCF3xk_B-fXVrSEj1cSxpWxApY2MxSgcrkuRg" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="win8.png" style="height: 20px; margin-right: 15px;">
+                <span style="color: #333;">Windows 8 x64</span>
+            </div>
+            <a href="https://mega.nz/file/JJUVSLLL#5VPkbRKf8Dk5wfYVtYHh87RLS9oQFw2Ib1r5MxYhq3c" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="win8.png" style="height: 20px; width: 20px; margin-right: 15px;">
+                <span style="color: #333;"><b>Windows 8 x32</b></span>
+            </div>
+            <a href="https://archive.org/download/win8-x32/fr_windows_8_x86_dvd_915420.iso" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
     </div>
 
     <!-- SECTION LEGACY -->
     <div class="category">
         <h2>Windows Classiques</h2>
         <div class="iso-item">
-    <span>
-        <img src="win7.png" width="25" style="margin-right:10px; vertical-align:middle;">
-        Windows 7 x64
-    </span>
-    <a href="https://mega.nz/file/YBtQFLgA#NT7nwFsZ2k0P5lTq6kAj9mKkST_gbuKPzDSj8OnZw3g" class="btn-dl">Télécharger</a>
-</div>  
-      <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center;">
-        <img src="win7.png" alt="Win7" style="height: 25px; margin-right: 15px;">
-        <span style="color: #333;">Windows 7 x32</span>
-    </div>
-    <a href="https://mega.nz/file/gU0HxJrC#U-K2-w9YpusC_UTCa6BmFBQMSeWh30YhpmgPZK2afk8" class="btn-dl" target="_blank" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Télécharger</a>
-</div>
+            <span>
+                <img src="win7.png" width="25" style="margin-right:10px; vertical-align:middle;">
+                Windows 7 x64
+            </span>
+            <a href="https://mega.nz/file/YBtQFLgA#NT7nwFsZ2k0P5lTq6kAj9mKkST_gbuKPzDSj8OnZw3g" class="btn-dl">Télécharger</a>
+        </div>  
+        
         <div class="iso-item">
-    <span>
-        <img src="winVista.png" width="25" style="margin-right:10px; vertical-align:middle;">
-        Windows Vista x64
-    </span>
-    <a href="https://mega.nz/file/ZVFwlZpL#ycFHnvyGsqiorXNzSlr23e-Jhbpw-OOHY4TEqnZDK0g" class="btn-dl">Télécharger</a>
-</div> 
-        <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center;">
-        <img src="winVista.png" alt="Vista" style="height: 20px; width: 20px; margin-right: 15px;">
-        <span style="color: #333;"><b>Windows Vista x32</span>
-    </div>
-    <a href="https://archive.org/details/Vista_SP2_LP_32bit" class="btn-dl" target="_blank">Télécharger</a>
-</div>
+            <div style="display: flex; align-items: center;">
+                <img src="win7.png" alt="Win7" style="height: 25px; margin-right: 15px;">
+                <span style="color: #333;">Windows 7 x32</span>
+            </div>
+            <a href="https://mega.nz/file/gU0HxJrC#U-K2-w9YpusC_UTCa6BmFBQMSeWh30YhpmgPZK2afk8" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
         <div class="iso-item">
-    <span>
-        <img src="winXP.png" width="33" style="margin-right:10px; vertical-align:middle;">
-        Windows XP x64
-    </span>
-    <a href="https://mega.nz/file/xdUBwLYA#sGKzSvoIf8QBrfaJYaI6L2eFx9zmEeRRKmYWWCKR7RA" class="btn-dl">Télécharger</a>
-</div>
-         <div class="iso-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center;">
-        <!-- Logo Windows XP classique -->
-        <img src="winXP.png" alt="XP" style="height: 20px; width: 20px; margin-right: 15px;">
-        <span style="color: #333;"><b>Windows XP x32</span>
-    </div>
-    <!-- Lien Archive.org direct pour la version FR officielle -->
-    <a href="https://archive.org/details/WinXPProSP3FRRecenSed" class="btn-dl" target="_blank">Télécharger</a>
-</div>
+            <span>
+                <img src="winVista.png" width="25" style="margin-right:10px; vertical-align:middle;">
+                Windows Vista x64
+            </span>
+            <a href="https://mega.nz/file/ZVFwlZpL#ycFHnvyGsqiorXNzSlr23e-Jhbpw-OOHY4TEqnZDK0g" class="btn-dl">Télécharger</a>
+        </div> 
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="winVista.png" alt="Vista" style="height: 20px; width: 20px; margin-right: 15px;">
+                <span style="color: #333;"><b>Windows Vista x32</b></span>
+            </div>
+            <a href="https://archive.org/details/Vista_SP2_LP_32bit" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <span>
+                <img src="winXP.png" width="33" style="margin-right:10px; vertical-align:middle;">
+                Windows XP x64
+            </span>
+            <a href="https://mega.nz/file/xdUBwLYA#sGKzSvoIf8QBrfaJYaI6L2eFx9zmEeRRKmYWWCKR7RA" class="btn-dl">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <div style="display: flex; align-items: center;">
+                <img src="winXP.png" alt="XP" style="height: 20px; width: 20px; margin-right: 15px;">
+                <span style="color: #333;"><b>Windows XP x32</b></span>
+            </div>
+            <a href="https://archive.org/details/WinXPProSP3FRRecenSed" class="btn-dl" target="_blank">Télécharger</a>
+        </div>
     </div>
 
     <!-- SECTION RETRO -->
     <div class="category">
         <h2>Windows Rétro</h2>
         <div class="iso-item">
-    <span>
-        <img src="winME.png" width="100" style="margin-right:10px; vertical-align:middle;">
-        Windows ME (Millennium) x32
-    </span>
-    <a href="https://mega.nz/file/RYNDTK7S#8sedoCNWgA2Zq9roPJzHhrsoKdYPlHpLw1oXz7IKSIg" class="btn-dl">Télécharger</a>
-</div>
-       <div class="iso-item">
-    <span>
-        <img src="win2000.png" width="100" style="margin-right:10px; vertical-align:middle;">
-        Windows 2000 x32
-    </span>
-    <a href="https://mega.nz/file/sBlRgawT#x_nnctbOByYFYaXH8aKoD92gIFanlQ70lwy05MIqApQ" class="btn-dl">Télécharger</a>
-</div>
+            <span>
+                <img src="winME.png" width="100" style="margin-right:10px; vertical-align:middle;">
+                Windows ME (Millennium) x32
+            </span>
+            <a href="https://mega.nz/file/RYNDTK7S#8sedoCNWgA2Zq9roPJzHhrsoKdYPlHpLw1oXz7IKSIg" class="btn-dl">Télécharger</a>
+        </div>
+        
         <div class="iso-item">
-    <span>
-        <img src="win98.png" width="60" style="margin-right:10px; vertical-align:middle;">
-        Windows 98 SE x32
-    </span>
-    <a href="https://mega.nz/file/9YNySQhZ#IEvPcy5ytZtGDDG2989Bpf6aSAhhUoAxwnU26tM8jhg" class="btn-dl">Télécharger</a>
-</div>
+            <span>
+                <img src="win2000.png" width="100" style="margin-right:10px; vertical-align:middle;">
+                Windows 2000 x32
+            </span>
+            <a href="https://mega.nz/file/sBlRgawT#x_nnctbOByYFYaXH8aKoD92gIFanlQ70lwy05MIqApQ" class="btn-dl">Télécharger</a>
+        </div>
+        
         <div class="iso-item">
-    <span>
-        <img src="win95.png" width="60" style="margin-right:10px; vertical-align:middle;">
-        Windows 95 x32
-    </span>
-    <a href="https://mega.nz/folder/NUVmTJKY#NF7hM66sKqBvsbIQ1acQoA" class="btn-dl">Télécharger</a>
-</div>
-   <!-- SECTION OUTILS -->
-<h2 style="margin-top:40px; color: #333333; border-bottom: 2px solid #0078d7; padding-bottom: 10px;">
-    🧰 Outil Indispensable
-</h2>
-</h2>
+            <span>
+                <img src="win98.png" width="60" style="margin-right:10px; vertical-align:middle;">
+                Windows 98 SE x32
+            </span>
+            <a href="https://mega.nz/file/9YNySQhZ#IEvPcy5ytZtGDDG2989Bpf6aSAhhUoAxwnU26tM8jhg" class="btn-dl">Télécharger</a>
+        </div>
+        
+        <div class="iso-item">
+            <span>
+                <img src="win95.png" width="60" style="margin-right:10px; vertical-align:middle;">
+                Windows 95 x32
+            </span>
+            <a href="https://mega.nz/folder/NUVmTJKY#NF7hM66sKqBvsbIQ1acQoA" class="btn-dl">Télécharger</a>
+        </div>
+    </div>
 
-<div class="iso-item">
-    <span>
-        <img src="VMware.png" width="30" style="margin-right:10px; vertical-align:middle;">
-        <b>VMware workstation</b> - Tester Windows en l'installant
-    </span>
-    <a href="https://www.clubic.com/telecharger-fiche121950-vmware-workstation.html" class="btn-dl" target="_blank" style="background-color: #28a745;">Téléchargement Sécurité</a>
-</div>
+    <!-- SECTION OUTILS -->
+    <div class="category">
+        <h2 style="margin-top:0; color: #333333; border-bottom: 2px solid #0078d7; padding-bottom: 10px;">
+            🧰 Outil Indispensable
+        </h2>
+        <div class="iso-item">
+            <span>
+                <img src="VMware.png" width="30" style="margin-right:10px; vertical-align:middle;">
+                <b>VMware Workstation</b> - Tester Windows en l'installant
+            </span>
+            <a href="https://www.clubic.com/telecharger-fiche121950-vmware-workstation.html" class="btn-dl" target="_blank">Téléchargement Sécurisé</a>
+        </div>
+    </div>
 
-
-<!-- Section : Tableau des Émulateurs Windows -->
-    <div class="catégorie">
+    <!-- Section : Tableau des Émulateurs Windows -->
+    <div class="category">
         <h2>💻 Guide des Émulateurs et Machines Virtuelles</h2>
         <p style="font-size: 0.9em; color: #666;">Voici les logiciels recommandés pour tester les ISO Windows selon leur génération :</p>
         
@@ -215,6 +249,7 @@
                     <th>Logiciel recommandé</th>
                 </tr>
             </thead>
+            <tbody>
                 <tr>
                     <td><strong>Windows Modernes</strong></td>
                     <td>Windows 11, 10</td>
@@ -235,7 +270,7 @@
                     <td>Windows 3.11, 3.1, 1.0</td>
                     <td><span class="badge-emu">DOSBox-X</span> / <span class="badge-emu">PCem</span></td>
                 </tr>
-            </script>
+            </tbody>
         </table>
     </div>
 
@@ -243,10 +278,3 @@
 
 </body>
 </html>
-    </div>
-</body>
-</html>
-
-</body>
-</html>
-
